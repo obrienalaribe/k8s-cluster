@@ -1,6 +1,14 @@
 # cea-gcp-k8s
 CEA Google Kubernetes Engine Clusters
 
+## Description
+
+This repository creates the following resources on Google Cloud Platform:
+- One node pool with autoscaling
+- One Kubernetes Cluster using the created node pool 
+
+The resources are planned and provisioned (applied) using [Terraform Cloud](https://app.terraform.io/app/masterventures).
+
 ## Prerequisites
 
 | Component | Description | Version |
