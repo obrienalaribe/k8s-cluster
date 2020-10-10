@@ -3,6 +3,7 @@ resource "google_container_cluster" "gke" {
   name     = var.gke_cluster_name
   remove_default_node_pool = true
   initial_node_count       = 1
+  ip_allocation_policy {}
 }
 
 # Create the new managed default node pool with autoscaling
