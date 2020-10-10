@@ -31,3 +31,4 @@ resource "google_container_node_pool" "default_node_pool" {
     ]
   }
 }
+
