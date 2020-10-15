@@ -3,7 +3,7 @@ resource "google_container_cluster" "gke" {
   name     = var.gke_cluster_name
   remove_default_node_pool = true
   initial_node_count       = 1
-  ip_allocation_policy {}
+  ip_allocation_policy {} # Define block for VPC-Native Cluster
 }
 
 # Create the new managed default node pool with autoscaling
@@ -23,7 +23,7 @@ resource "google_container_node_pool" "default_node_pool" {
     metadata = {
       disable-legacy-endpoints = "true"
     }
-
+    # Logging, Monitoring and Storage Access
     oauth_scopes = [
       "https://www.googleapis.com/auth/logging.write",
       "https://www.googleapis.com/auth/monitoring",
@@ -31,3 +31,4 @@ resource "google_container_node_pool" "default_node_pool" {
     ]
   }
 }
+

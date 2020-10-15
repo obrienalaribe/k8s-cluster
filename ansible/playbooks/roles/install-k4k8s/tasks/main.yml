@@ -1,0 +1,6 @@
+---
+# tasks file for install-k4k8s
+- name: Apply the Kong Kubernetes manifest against the Kubernetes Cluster
+  k8s:
+    state: present
+    src: "{{ files_dir_local }}/kong.yml"
