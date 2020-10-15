@@ -9,6 +9,9 @@ This repository creates the following resources on Google Cloud Platform:
 
 The resources are planned and provisioned (applied) using [Terraform Cloud](https://app.terraform.io/app/masterventures).
 
+Once the provisioning is done, it generates a kubeconfig file and installs ansible to run the ansible playbook afterwards,
+all of this right in Terraform Cloud.
+
 ## Prerequisites
 
 | Component | Description | Version |
