@@ -1,0 +1,3 @@
+---
+# defaults file for install-k4k8s
+files_dir_local: "roles/{{ ansible_role_name }}/files"
