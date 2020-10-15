@@ -1,4 +1,4 @@
-# Install ansible in Terraform Cloud
+# Install ansible and openshift package in Terraform Cloud
 resource "null_resource" "install_ansible" {
   provisioner "local-exec" {
     command = "python -m pip install --user ansible==2.9.14 openshift==0.11.2"
