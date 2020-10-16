@@ -2,6 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: orderbook-ingress
+  namespace: default
   annotations:
     kubernetes.io/ingress.class: kong
 spec:
