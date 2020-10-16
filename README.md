@@ -75,3 +75,11 @@ terraform apply
 ```bash
 terraform destroy
 ```
+
+## Cluster Configuration Management
+
+Once the Kubernetes is fully provisioned in GKE, a set of ansible playbooks run agains it to configure [Kong](https://konghq.com) using [Ansible](https://www.ansible.com)
+
+### API Gateway Configurations (Ingress Rules)
+
+The list of configuration files that are being applied to set up Kong API Gateway can be found [here](ansible/playbooks/roles/install-k4k8s/files)
