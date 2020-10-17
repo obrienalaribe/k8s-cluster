@@ -11,3 +11,4 @@
     src: "{{ ingress_dir }}/{{ item }}"
   with_items: 
     - orderbook.yml
+    - wallet-service.yml
