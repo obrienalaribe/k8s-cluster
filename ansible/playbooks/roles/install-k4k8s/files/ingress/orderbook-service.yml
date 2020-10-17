@@ -11,9 +11,9 @@ spec:
       paths:
       - path: /order/get
         backend:
-          serviceName: cea-orderbook-service-svc
+          serviceName: cea-orderbook-service
           servicePort: 80
       - path: /orderbook/set
         backend:
-          serviceName: cea-orderbook-service-svc
+          serviceName: cea-orderbook-service
           servicePort: 80
