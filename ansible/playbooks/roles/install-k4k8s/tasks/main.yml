@@ -10,5 +10,5 @@
     state: present
     src: "{{ ingress_dir }}/{{ item }}"
   with_items: 
-    - orderbook.yml
+    - orderbook-service.yml
     - wallet-service.yml
