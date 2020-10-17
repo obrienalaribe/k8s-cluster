@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: orderbook-ingress
+  name: orderbook-service
   namespace: default
   annotations:
     kubernetes.io/ingress.class: kong
@@ -11,5 +11,9 @@ spec:
       paths:
       - path: /order/get
         backend:
-          serviceName: cea-orderbook-service-svc
+          serviceName: cea-orderbook-service
+          servicePort: 80
+      - path: /orderbook/set
+        backend:
+          serviceName: cea-orderbook-service
           servicePort: 80
