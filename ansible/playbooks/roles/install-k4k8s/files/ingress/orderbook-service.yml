@@ -50,6 +50,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: orderbook-maker-service-acl-tatis
+  namespace: default
 type: Opaque
 data:
   group: dGF0aXMtdXNlcnM=
@@ -59,6 +60,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: orderbook-maker-service-acl-shera
+  namespace: default
 type: Opaque
 data:
   group: c2hlcmEtdXNlcnM=
@@ -68,6 +70,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: orderbook-maker-service-key-tatis
+  namespace: default
 type: Opaque
 data:
   key: NkhzWEg5NHE1Y0FHeTY3Rw==
@@ -77,6 +80,7 @@ apiVersion: configuration.konghq.com/v1
 kind: KongConsumer
 metadata:
   name: orderbook-maker-service-tatis
+  namespace: default
   annotations:
     kubernetes.io/ingress.class: kong
 username: tatis
@@ -88,6 +92,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: orderbook-maker-service-key-shera
+  namespace: default
 type: Opaque
 data:
   key: Ympoc3czS3lhM0JqUXBWMg==
@@ -97,6 +102,7 @@ apiVersion: configuration.konghq.com/v1
 kind: KongConsumer
 metadata:
   name: orderbook-maker-service-shera
+  namespace: default
   annotations:
     kubernetes.io/ingress.class: kong
 username: shera
@@ -108,6 +114,7 @@ apiVersion: configuration.konghq.com/v1
 kind: KongIngress
 metadata:
   name: orderbook-maker-service-route
+  namespace: default
 route:
   strip_path: true
 ---
