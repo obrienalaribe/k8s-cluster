@@ -3,12 +3,14 @@ apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
   name: orderbook-maker-service-auth
+  namespace: default
 plugin: key-auth
 ---
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
   name: orderbook-maker-service-header-tatis
+  namespace: default
 plugin: request-transformer
 config:
   add:
@@ -19,6 +21,7 @@ apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
   name: orderbook-maker-service-header-shera
+  namespace: default
 plugin: request-transformer
 config:
   add:
@@ -29,6 +32,7 @@ apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
   name: orderbook-maker-service-acl-tatis
+  namespace: default
 plugin: acl
 config:
   whitelist: ['tatis-users']
@@ -37,6 +41,7 @@ apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
   name: orderbook-maker-service-acl-shera
+  namespace: default
 plugin: acl
 config:
   whitelist: ['shera-users']
