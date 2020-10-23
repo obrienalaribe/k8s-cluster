@@ -1,0 +1,143 @@
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: orderbook-maker-service-auth
+plugin: key-auth
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: orderbook-maker-service-header-tatis
+plugin: request-transformer
+config:
+  add:
+    headers:
+    - x-exchange-id:tatis
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: orderbook-maker-service-header-shera
+plugin: request-transformer
+config:
+  add:
+    headers:
+    - x-exchange-id:shera
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: orderbook-maker-service-acl-tatis
+plugin: acl
+config:
+  whitelist: ['tatis-users']
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: orderbook-maker-service-acl-shera
+plugin: acl
+config:
+  whitelist: ['shera-users']
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: orderbook-maker-service-acl-tatis
+type: Opaque
+data:
+  group: dGF0aXMtdXNlcnM=
+  kongCredType: YWNs
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: orderbook-maker-service-acl-shera
+type: Opaque
+data:
+  group: c2hlcmEtdXNlcnM=
+  kongCredType: YWNs
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: orderbook-maker-service-key-tatis
+type: Opaque
+data:
+  key: NkhzWEg5NHE1Y0FHeTY3Rw==
+  kongCredType: a2V5LWF1dGg=
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongConsumer
+metadata:
+  name: orderbook-maker-service-tatis
+  annotations:
+    kubernetes.io/ingress.class: kong
+username: tatis
+credentials:
+- orderbook-maker-service-key-tatis
+- orderbook-maker-service-acl-tatis
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: orderbook-maker-service-key-shera
+type: Opaque
+data:
+  key: Ympoc3czS3lhM0JqUXBWMg==
+  kongCredType: a2V5LWF1dGg=
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongConsumer
+metadata:
+  name: orderbook-maker-service-shera
+  annotations:
+    kubernetes.io/ingress.class: kong
+username: shera
+credentials:
+- orderbook-maker-service-key-shera
+- orderbook-maker-service-acl-shera
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongIngress
+metadata:
+  name: orderbook-maker-service-route
+route:
+  strip_path: true
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: orderbook-maker-service-tatis
+  namespace: default
+  annotations:
+    konghq.com/plugins: orderbook-maker-service-acl-tatis,orderbook-maker-service-auth,orderbook-maker-service-header-tatis
+    konghq.com/override: orderbook-maker-service-route
+    kubernetes.io/ingress.class: kong
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /tatis
+        backend:
+          serviceName: orderbook-maker-service-tatis
+          servicePort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: orderbook-maker-service-shera
+  namespace: default
+  annotations:
+    konghq.com/plugins: orderbook-maker-service-acl-shera,orderbook-maker-service-auth,orderbook-maker-service-header-shera
+    konghq.com/override: orderbook-maker-service-route
+    kubernetes.io/ingress.class: kong
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /shera
+        backend:
+          serviceName: orderbook-maker-service-shera
+          servicePort: 80
