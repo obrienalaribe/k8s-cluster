@@ -131,9 +131,13 @@ spec:
   rules:
   - http:
       paths:
-      - path: /tatis
+      - path: /tatis/maker
         backend:
           serviceName: orderbook-maker-service-tatis
+          servicePort: 80
+      - path: /tatis/taker
+        backend:
+          serviceName: orderbook-taker-service-tatis
           servicePort: 80
 ---
 apiVersion: extensions/v1beta1
@@ -149,7 +153,11 @@ spec:
   rules:
   - http:
       paths:
-      - path: /shera
+      - path: /shera/maker
         backend:
           serviceName: orderbook-maker-service-shera
+          servicePort: 80
+      - path: /shera/taker
+        backend:
+          serviceName: orderbook-taker-service-shera
           servicePort: 80
