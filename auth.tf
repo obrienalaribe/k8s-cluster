@@ -9,6 +9,7 @@ module "gke_auth" {
 }
 
 resource "local_file" "kubeconfig" {
+  depends_on = [google_container_node_pool.default_node_pool]
   content  = module.gke_auth.kubeconfig_raw
   filename = ".kubeconfig"
 }
