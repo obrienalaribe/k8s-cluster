@@ -34,6 +34,9 @@ zone = "us-east1-b"
 gke_cluster_name = "cea-k8s"
 gke_node_pool_name = "cea-k8s-node-pool"
 gke_node_pool_machine_type = "n2-standard-2"
+
+# Consul Vars
+consul_release_name = "cea"
 ```
 
 Regions Documentation: https://cloud.google.com/about/locations/#regions
