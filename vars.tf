@@ -29,3 +29,21 @@ variable "gke_node_pool_machine_type" {
   type = string
   description = "Instance type used upon node pool creation"
 }
+
+# Consul Vars
+variable "consul_release_name" {
+  type        = string
+  description = "Helm Release name for Consul chart"
+}
+
+variable "consul_k8s_namespace" {
+  type        = string
+  default     = "hashicorp"
+  description = "Namespace to deploy the Consul Helm chart"
+}
+
+variable "consul_replicas" {
+  type        = number
+  default     = 1
+  description = "Number of consul replicas"
+}
