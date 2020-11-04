@@ -1,4 +1,4 @@
-# Provider Vars
+# Google Vars
 variable "project" {
   type = string
   description = "GCP Project"
@@ -30,7 +30,7 @@ variable "gke_node_pool_machine_type" {
   description = "Instance type used upon node pool creation"
 }
 
-# Consul Vars
+# Hashicorp Vars
 variable "consul_release_name" {
   type        = string
   description = "Helm Release name for Consul chart"
@@ -42,6 +42,7 @@ variable "consul_k8s_namespace" {
   description = "Namespace to deploy the Consul Helm chart"
 }
 
+# Consul Vars
 variable "consul_replicas" {
   type        = number
   default     = 1

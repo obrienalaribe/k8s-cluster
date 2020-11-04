@@ -19,3 +19,14 @@ resource "helm_release" "consul" {
     value = var.consul_replicas
   }
 }
+
+resource "helm_release" "vault" {
+  name      = "${var.consul_release_name}-vault"
+  chart     = "${path.module}/vault-helm"
+  namespace  = var.consul_k8s_namespace
+
+  set {
+    name = "server.ha.enabled"
+    value = "true"
+  }
+}
