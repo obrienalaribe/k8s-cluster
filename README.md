@@ -81,7 +81,12 @@ terraform destroy
 
 ## Cluster Configuration Management
 
-Once the Kubernetes is fully provisioned in GKE, a set of ansible playbooks run against it to configure [Kong](https://konghq.com) using [Ansible](https://www.ansible.com)
+Once the Kubernetes is fully provisioned in GKE, a set of Helm charts are installed in the cluster:
+- [Kong](https://konghq.com), for API Gateway.
+- [Vault](https://www.vaultproject.io), for Secret Management.
+- [Consul](https://www.consul.io), for Vault's High Availability storage backend.
+
+Also, a playbook runs against Kubernetes to configure Kong Ingress Rules using [Ansible](https://www.ansible.com).
 
 ### API Gateway Configurations (Ingress Rules)
 
