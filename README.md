@@ -91,3 +91,13 @@ Also, a playbook runs against Kubernetes to configure Kong Ingress Rules using [
 ### API Gateway Configurations (Ingress Rules)
 
 The list of configuration files that are being applied to set up Kong API Gateway can be found [here](ansible/playbooks/roles/install-k4k8s/files/ingress)
+
+### Vault Operational considerations
+
+Once Vault is fully installed there are some manual steps to be done to work with vault:
+
+- [Initialize and unseal process](https://learn.hashicorp.com/tutorials/vault/kubernetes-raft-deployment-guide?in=vault/kubernetes#initialize-and-unseal-vault)
+- [Set secrets](https://learn.hashicorp.com/tutorials/vault/kubernetes-sidecar#set-a-secret-in-vault)
+- [Configure Kubernetes authentication](https://learn.hashicorp.com/tutorials/vault/kubernetes-sidecar#configure-kubernetes-authentication)
+
+**The steps above are subject to be automated**
