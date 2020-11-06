@@ -29,4 +29,6 @@ resource "helm_release" "vault" {
     name = "server.ha.enabled"
     value = "true"
   }
+  
+  depends_on = [helm_release.consul]
 }
