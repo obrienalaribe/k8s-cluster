@@ -35,8 +35,9 @@ gke_cluster_name = "cea-k8s"
 gke_node_pool_name = "cea-k8s-node-pool"
 gke_node_pool_machine_type = "n2-standard-2"
 
-# Consul Vars
-consul_release_name = "cea"
+# Hashicorp Vars
+hashicorp_release_name = "cea"
+consul_replicas = 2
 ```
 
 Regions Documentation: https://cloud.google.com/about/locations/#regions
@@ -94,10 +95,11 @@ The list of configuration files that are being applied to set up Kong API Gatewa
 
 ### Vault Operational considerations
 
-Once Vault is fully installed there are some manual steps to be done to work with vault:
+Once Vault is fully installed there are some manual steps to be done in order to work with vault:
 
 - [Initialize and unseal process](https://learn.hashicorp.com/tutorials/vault/kubernetes-raft-deployment-guide?in=vault/kubernetes#initialize-and-unseal-vault)
-- [Set secrets](https://learn.hashicorp.com/tutorials/vault/kubernetes-sidecar#set-a-secret-in-vault)
 - [Configure Kubernetes authentication](https://learn.hashicorp.com/tutorials/vault/kubernetes-sidecar#configure-kubernetes-authentication)
+- [Set secrets](https://learn.hashicorp.com/tutorials/vault/kubernetes-sidecar#set-a-secret-in-vault)
+
 
 **The steps above are subject to be automated**

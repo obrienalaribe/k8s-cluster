@@ -1,8 +1,8 @@
 resource "helm_release" "consul" {
   depends_on = [kubernetes_namespace.hashicorp]
-  name       = "${var.consul_release_name}-consul"
+  name       = "${var.hashicorp_release_name}-consul"
   chart      = "${path.module}/consul-helm"
-  namespace  = var.consul_k8s_namespace
+  namespace  = var.hashicorp_k8s_namespace
 
   set {
     name  = "global.name"
@@ -21,9 +21,9 @@ resource "helm_release" "consul" {
 }
 
 resource "helm_release" "vault" {
-  name      = "${var.consul_release_name}-vault"
+  name      = "${var.hashicorp_release_name}-vault"
   chart     = "${path.module}/vault-helm"
-  namespace  = var.consul_k8s_namespace
+  namespace  = var.hashicorp_k8s_namespace
 
   set {
     name = "server.ha.enabled"

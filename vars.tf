@@ -31,15 +31,15 @@ variable "gke_node_pool_machine_type" {
 }
 
 # Hashicorp Vars
-variable "consul_release_name" {
+variable "hashicorp_release_name" {
   type        = string
-  description = "Helm Release name for Consul chart"
+  description = "Helm Release name for Vault and Consul charts"
 }
 
-variable "consul_k8s_namespace" {
+variable "hashicorp_k8s_namespace" {
   type        = string
   default     = "hashicorp"
-  description = "Namespace to deploy the Consul Helm chart"
+  description = "Namespace to deploy the Helm charts"
 }
 
 # Consul Vars
