@@ -29,6 +29,11 @@ resource "helm_release" "vault" {
     name = "server.ha.enabled"
     value = "true"
   }
+
+  set {
+    name  = "server.ha.replicas"
+    value = var.consul_replicas
+  }
   
   depends_on = [helm_release.consul]
 }
