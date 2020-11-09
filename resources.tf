@@ -10,7 +10,14 @@ resource "google_container_cluster" "gke" {
 resource "google_container_node_pool" "default_node_pool" {
   name       = var.gke_node_pool_name
   cluster    = google_container_cluster.gke.name
-  node_count = 2
+  # Define initial number of nodes for the pool with a lifecycle block to ignore subsequent changes to this field
+  initial_node_count = 2
+
+  lifecycle {
+    ignore_changes = [
+      initial_node_count
+    ]
+  }
 
   autoscaling {
       min_node_count = 2
@@ -31,4 +38,3 @@ resource "google_container_node_pool" "default_node_pool" {
     ]
   }
 }
-

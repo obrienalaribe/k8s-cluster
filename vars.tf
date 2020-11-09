@@ -1,4 +1,4 @@
-# Provider Vars
+# Google Vars
 variable "project" {
   type = string
   description = "GCP Project"
@@ -28,4 +28,30 @@ variable "gke_node_pool_name" {
 variable "gke_node_pool_machine_type" {
   type = string
   description = "Instance type used upon node pool creation"
+}
+
+# Hashicorp Vars
+variable "hashicorp_release_name" {
+  type        = string
+  description = "Helm Release name for Vault and Consul charts"
+}
+
+variable "hashicorp_k8s_namespace" {
+  type        = string
+  default     = "hashicorp"
+  description = "Namespace to deploy the Helm charts"
+}
+
+# Vault Vars
+variable "vault_replicas" {
+  type        = number
+  default     = 1
+  description = "Number of vault replicas"
+}
+
+# Consul Vars
+variable "consul_replicas" {
+  type        = number
+  default     = 1
+  description = "Number of consul replicas"
 }
