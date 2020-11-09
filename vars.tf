@@ -42,6 +42,13 @@ variable "hashicorp_k8s_namespace" {
   description = "Namespace to deploy the Helm charts"
 }
 
+# Vault Vars
+variable "vault_replicas" {
+  type        = number
+  default     = 1
+  description = "Number of vault replicas"
+}
+
 # Consul Vars
 variable "consul_replicas" {
   type        = number

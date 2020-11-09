@@ -32,7 +32,7 @@ resource "helm_release" "vault" {
 
   set {
     name  = "server.ha.replicas"
-    value = var.consul_replicas
+    value = var.vault_replicas
   }
   
   depends_on = [helm_release.consul]

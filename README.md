@@ -37,6 +37,11 @@ gke_node_pool_machine_type = "n2-standard-2"
 
 # Hashicorp Vars
 hashicorp_release_name = "cea"
+
+# Vaul Vars
+vault_replicas = 2
+
+# Consul Vars
 consul_replicas = 2
 ```
 
