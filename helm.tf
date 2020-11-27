@@ -1,4 +1,5 @@
 resource "helm_release" "consul" {
+  count = var.enable_vault_consul ? 1 : 0
   depends_on = [kubernetes_namespace.hashicorp]
   name       = "${var.hashicorp_release_name}-consul"
   chart      = "${path.module}/consul-helm"
@@ -21,6 +22,7 @@ resource "helm_release" "consul" {
 }
 
 resource "helm_release" "vault" {
+  count = var.enable_vault_consul ? 1 : 0
   name      = "${var.hashicorp_release_name}-vault"
   chart     = "${path.module}/vault-helm"
   namespace  = var.hashicorp_k8s_namespace

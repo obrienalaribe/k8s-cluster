@@ -30,7 +30,19 @@ variable "gke_node_pool_machine_type" {
   description = "Instance type used upon node pool creation"
 }
 
+variable "enable_kong" {
+  type = bool
+  default = true
+  description = "Whether or not to deploy Kong"
+}
+
 # Hashicorp Vars
+variable "enable_vault_consul" {
+  type = bool
+  default = true
+  description = "Whether or not to deploy Vault and Consul"
+}
+
 variable "hashicorp_release_name" {
   type        = string
   description = "Helm Release name for Vault and Consul charts"
