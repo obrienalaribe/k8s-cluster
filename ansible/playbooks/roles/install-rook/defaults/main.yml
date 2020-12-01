@@ -1,0 +1,3 @@
+---
+# defaults file for install-rook
+files_dir_local: "roles/{{ ansible_role_name }}/files"
