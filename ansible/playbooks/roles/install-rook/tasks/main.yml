@@ -1,0 +1,13 @@
+---
+# tasks file for install-rook
+- name: Apply the Rook Kubernetes manifest against the Kubernetes Cluster
+  k8s:
+    state: present
+    src: "{{ files_dir_local }}/rook.yml"
+  
+- name: Configure Rook NFS Instance
+  k8s:
+    state: present
+    src: "{{ nfs_dir }}/{{ item }}"
+  with_items: 
+    - nfs.yml

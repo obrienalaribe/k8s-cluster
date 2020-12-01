@@ -1,0 +1,154 @@
+# Rook NFS
+# Custom NFS Server instance 
+# Source https://github.com/rook/rook/blob/v1.5.1/cluster/examples/kubernetes/nfs/nfs.yaml
+---
+# A default storageclass must be present
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-claim-01
+  namespace: rook-nfs
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+# A default storageclass must be present
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-claim-02
+  namespace: rook-nfs
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+# A default storageclass must be present
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-claim-03
+  namespace: rook-nfs
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+# A default storageclass must be present
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-claim-04
+  namespace: rook-nfs
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: nfs.rook.io/v1alpha1
+kind: NFSServer
+metadata:
+  name: rook-nfs
+  namespace: rook-nfs
+spec:
+  replicas: 1
+  exports:
+  - name: export-01
+    server:
+      accessMode: ReadWrite
+      squash: "none"
+    # A Persistent Volume Claim must be created before creating NFS CRD instance.
+    persistentVolumeClaim:
+      claimName: nfs-claim-01
+  - name: export-02
+    server:
+      accessMode: ReadWrite
+      squash: "none"
+    # A Persistent Volume Claim must be created before creating NFS CRD instance.
+    persistentVolumeClaim:
+      claimName: nfs-claim-02
+  - name: export-03
+    server:
+      accessMode: ReadWrite
+      squash: "none"
+    # A Persistent Volume Claim must be created before creating NFS CRD instance.
+    persistentVolumeClaim:
+      claimName: nfs-claim-03
+  - name: export-04
+    server:
+      accessMode: ReadWrite
+      squash: "none"
+    # A Persistent Volume Claim must be created before creating NFS CRD instance.
+    persistentVolumeClaim:
+      claimName: nfs-claim-04
+  # A key/value list of annotations
+  annotations:
+    rook: nfs
+
+# Custom Storage Classes 
+# Source https://github.com/rook/rook/blob/v1.5.1/cluster/examples/kubernetes/nfs/sc.yaml
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  labels:
+    app: rook-nfs
+  name: rook-nfs-sc-01
+parameters:
+  exportName: export-01
+  nfsServerName: rook-nfs
+  nfsServerNamespace: rook-nfs
+provisioner: nfs.rook.io/rook-nfs-provisioner
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  labels:
+    app: rook-nfs
+  name: rook-nfs-sc-02
+parameters:
+  exportName: export-02
+  nfsServerName: rook-nfs
+  nfsServerNamespace: rook-nfs
+provisioner: nfs.rook.io/rook-nfs-provisioner
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  labels:
+    app: rook-nfs
+  name: rook-nfs-sc-03
+parameters:
+  exportName: export-03
+  nfsServerName: rook-nfs
+  nfsServerNamespace: rook-nfs
+provisioner: nfs.rook.io/rook-nfs-provisioner
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  labels:
+    app: rook-nfs
+  name: rook-nfs-sc-04
+parameters:
+  exportName: export-04
+  nfsServerName: rook-nfs
+  nfsServerNamespace: rook-nfs
+provisioner: nfs.rook.io/rook-nfs-provisioner
+reclaimPolicy: Delete
+volumeBindingMode: Immediate

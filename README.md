@@ -87,12 +87,13 @@ terraform destroy
 
 ## Cluster Configuration Management
 
-Once the Kubernetes is fully provisioned in GKE, a set of Helm charts are installed in the cluster:
+Once the Kubernetes is fully provisioned in GKE, the following Cloud-native technologies are installed and configured:
 - [Kong](https://konghq.com), for API Gateway.
 - [Vault](https://www.vaultproject.io), for Secret Management.
 - [Consul](https://www.consul.io), for Vault's High Availability storage backend.
+- [Rook](https://rook.io/), for Cloud-native storage to support ReadWriteMany volumes using [Rook NFS](https://rook.io/docs/rook/v1.5/nfs.html)
 
-Also, a playbook runs against Kubernetes to configure Kong Ingress Rules using [Ansible](https://www.ansible.com).
+Also, a playbook runs against Kubernetes to configure Kong Ingress Rules as well as custom Rook NFS instance using [Ansible](https://www.ansible.com).
 
 ### API Gateway Configurations (Ingress Rules)
 
@@ -108,3 +109,18 @@ Once Vault is fully installed there are some manual steps to be done in order to
 
 
 **The steps above are subject to be automated**
+
+### Rook NFS Operation considerations
+
+Once Rook is fully installed through Ansible, a Rook NFS instance gets created right away, which is defined [here](ansible/playbooks/roles/install-rook/files/nfs/nfs.yml) as well as Kubernetes StorageClasses. The following table documents the Storage Classes created as well as its respective Persistent Volume Claim, the relation must be One-to-One.
+
+| StorageClass | Persistent Volume Claim | Size |
+| --- | --- | --- |
+| rook-nfs-sc-01 | cea-orderbook-maker-service-tatis-logs | 10Gi |
+| rook-nfs-sc-02 | cea-orderbook-maker-service-shera-logs | 10Gi |
+| rook-nfs-sc-03 | cea-orderbook-taker-service-tatis-logs | 10Gi |
+| rook-nfs-sc-04 | cea-orderbook-taker-service-shera-logs | 10Gi |
+
+**editing NFS Exports and StorageClass does cause a downtime, therefore pods accesing the ReadWriteMany must be manually deleted.**
+
+Bear in mind that Rook NFS is only used for ReadWriteMany volumes. For ReadWriteOnce and ReadOnlyMany volumes, there is nothing additional to do. [Access Modes Documentation](https://cloud.google.com/kubernetes-engine/docs/concepts/persistent-volumes#access_modes) 
