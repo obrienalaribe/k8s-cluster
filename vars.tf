@@ -30,6 +30,24 @@ variable "gke_node_pool_machine_type" {
   description = "Instance type used upon node pool creation"
 }
 
+# GKE Autoscalling Variables
+
+variable "gke_initial_node_count" {
+  type = string
+  description = "GKE Initial node count per zone"
+}
+
+variable "gke_min_node_count" {
+  type = string
+  description = "GKE Minimum node count per zone"
+}
+
+variable "gke_max_node_count" {
+  type = string
+  description = "GKE Maximum node count per zone"
+}
+
+# Cluster Management Variables
 variable "enable_kong" {
   type = bool
   default = true
