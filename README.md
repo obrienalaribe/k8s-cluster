@@ -33,18 +33,9 @@ zone = "us-east1-b"
 # GKE Vars
 gke_cluster_name = "cea-k8s"
 gke_node_pool_name = "cea-k8s-node-pool"
-gke_node_pool_machine_type = "e2-medium"
-
-# GKE Autoscalling Variables
-gke_initial_node_count = 1
-gke_min_node_count = 1
-gke_max_node_count = 3
-
-# Cluster Management Variables
-enable_kong = true
+gke_node_pool_machine_type = "n2-standard-2"
 
 # Hashicorp Vars
-enable_vault_consul = true
 hashicorp_release_name = "cea"
 
 # Vaul Vars
@@ -52,7 +43,6 @@ vault_replicas = 2
 
 # Consul Vars
 consul_replicas = 2
-
 ```
 
 Regions Documentation: https://cloud.google.com/about/locations/#regions
