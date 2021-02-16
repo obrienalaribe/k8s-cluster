@@ -5,9 +5,9 @@ CEA Google Kubernetes Engine Clusters
 
 This repository creates the following resources on Google Cloud Platform:
 - One node pool with autoscaling
-- One Kubernetes Cluster using the created node pool 
+- One Kubernetes Cluster using the created node pool
 
-The resources are planned and provisioned (applied) using [Terraform Cloud](https://app.terraform.io/app/masterventures).
+The resources are planned and provisioned (applied) using [Terraform Cloud](https://app.terraform.io/app/MasterVentures).
 
 Once the provisioning is done, it generates a kubeconfig file and installs ansible to run the ansible playbook afterwards,
 all of this right in Terraform Cloud.
@@ -16,33 +16,16 @@ all of this right in Terraform Cloud.
 
 | Component | Description | Version |
 | --- | --- | --- |
-| Terraform | Provision GCP Resources | => 0.13 |
+| Terraform | Provision GCP Resources | = 0.13.4 |
 
 ### Configure variables
 
 Take a look at [vars.tf](vars.tf) and create a terraform.tfvars file, here's an example:
 
-Create terraform.tfvars
+Create terraform.tfvars from terraform.tfvars.example and modify according to your needs.
 
 ```bash
-# Provider Vars
-project = "vivid-plateau-278712"
-region = "us-east1"
-zone = "us-east1-b"
-
-# GKE Vars
-gke_cluster_name = "cea-k8s"
-gke_node_pool_name = "cea-k8s-node-pool"
-gke_node_pool_machine_type = "n2-standard-2"
-
-# Hashicorp Vars
-hashicorp_release_name = "cea"
-
-# Vaul Vars
-vault_replicas = 2
-
-# Consul Vars
-consul_replicas = 2
+cp terraform.tfvars.example terraform.tfvars
 ```
 
 Regions Documentation: https://cloud.google.com/about/locations/#regions
@@ -56,14 +39,13 @@ Create a new Service Account in IAM with the following roles:
 
 ## Getting Started
 
-Create a new key in the IAM Console and store it in the root directory of the repository, export the variable GOOGLE_CLOUD_KEYFILE_JSON 
-in order for Terraform to provision the resources as follow:
+Create a new key in the IAM Console and store it in the root directory of the repository, export the variable GOOGLE_CLOUD_KEYFILE_JSON in order for Terraform to provision the resources as follow:
 
 ```bash
 export GOOGLE_CLOUD_KEYFILE_JSON=$(cat terraform-cloud.json)
 ```
 
-Download providers: 
+Download providers:
 
 ```bash
 terraform init
@@ -123,4 +105,4 @@ Once Rook is fully installed through Ansible, a Rook NFS instance gets created r
 
 **editing NFS Exports and StorageClass does cause a downtime, therefore pods accesing the ReadWriteMany must be manually deleted.**
 
-Bear in mind that Rook NFS is only used for ReadWriteMany volumes. For ReadWriteOnce and ReadOnlyMany volumes, there is nothing additional to do. [Access Modes Documentation](https://cloud.google.com/kubernetes-engine/docs/concepts/persistent-volumes#access_modes) 
+Bear in mind that Rook NFS is only used for ReadWriteMany volumes. For ReadWriteOnce and ReadOnlyMany volumes, there is nothing additional to do. [Access Modes Documentation](https://cloud.google.com/kubernetes-engine/docs/concepts/persistent-volumes#access_modes)
