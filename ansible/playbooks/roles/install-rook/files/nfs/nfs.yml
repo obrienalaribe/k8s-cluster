@@ -1,5 +1,5 @@
 # Rook NFS
-# Custom NFS Server instance 
+# Custom NFS Server instance
 # Source https://github.com/rook/rook/blob/v1.5.1/cluster/examples/kubernetes/nfs/nfs.yaml
 ---
 # A default storageclass must be present
@@ -54,6 +54,19 @@ spec:
     requests:
       storage: 10Gi
 ---
+# A default storageclass must be present
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-claim-05
+  namespace: rook-nfs
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
 apiVersion: nfs.rook.io/v1alpha1
 kind: NFSServer
 metadata:
@@ -90,6 +103,13 @@ spec:
     # A Persistent Volume Claim must be created before creating NFS CRD instance.
     persistentVolumeClaim:
       claimName: nfs-claim-04
+  - name: export-05
+    server:
+      accessMode: ReadWrite
+      squash: "none"
+    # A Persistent Volume Claim must be created before creating NFS CRD instance.
+    persistentVolumeClaim:
+      claimName: nfs-claim-05
   # A key/value list of annotations
   annotations:
     rook: nfs
@@ -147,6 +167,20 @@ metadata:
   name: rook-nfs-sc-04
 parameters:
   exportName: export-04
+  nfsServerName: rook-nfs
+  nfsServerNamespace: rook-nfs
+provisioner: nfs.rook.io/rook-nfs-provisioner
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  labels:
+    app: rook-nfs
+  name: rook-nfs-sc-05
+parameters:
+  exportName: export-05
   nfsServerName: rook-nfs
   nfsServerNamespace: rook-nfs
 provisioner: nfs.rook.io/rook-nfs-provisioner

@@ -102,6 +102,7 @@ Once Rook is fully installed through Ansible, a Rook NFS instance gets created r
 | rook-nfs-sc-02 | cea-orderbook-maker-service-shera-logs | 10Gi |
 | rook-nfs-sc-03 | cea-orderbook-taker-service-tatis-logs | 10Gi |
 | rook-nfs-sc-04 | cea-orderbook-taker-service-shera-logs | 10Gi |
+| rook-nfs-sc-05 | cea-billing-service-logs | 10Gi |
 
 **editing NFS Exports and StorageClass does cause a downtime, therefore pods accesing the ReadWriteMany must be manually deleted.**
 
