@@ -9,8 +9,8 @@ resource "google_container_cluster" "gke" {
     start_time = "2021-03-23T02:00:00Z"
     end_time = "2021-03-23T08:00:00Z"
     recurrence = "FREQ=WEEKLY;BYDAY=SA,SU"
+    }
   }
-}
 }
 
 # Create the new managed default node pool with autoscaling
