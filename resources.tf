@@ -6,8 +6,8 @@ resource "google_container_cluster" "gke" {
   ip_allocation_policy {} # Define block for VPC-Native Cluster
   maintenance_policy {
     recurring_window {
-    start_time = "2021-03-23T02:00:00Z"
-    end_time = "2021-03-23T08:00:00Z"
+    start_time = "2021-03-23T00:00:00Z"
+    end_time = "2021-03-23T06:00:00Z"
     recurrence = "FREQ=WEEKLY;BYDAY=SA,SU"
     }
   }
