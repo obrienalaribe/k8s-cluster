@@ -50,6 +50,11 @@ Download providers:
 ```bash
 terraform init
 ```
+Clone repositories submodules
+
+```bash
+git submodule update
+```
 
 ### Deploy the infrastructure
 
