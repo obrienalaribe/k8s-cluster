@@ -36,6 +36,12 @@ variable "enable_kong" {
   description = "Whether or not to deploy Kong"
 }
 
+variable "enable_rook" {
+  type = bool
+  default = true
+  description = "Whether or not to deploy Rook"
+}
+
 # Hashicorp Vars
 variable "enable_vault_consul" {
   type = bool
