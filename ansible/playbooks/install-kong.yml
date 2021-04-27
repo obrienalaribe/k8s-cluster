@@ -3,4 +3,4 @@
   become: no
   gather_facts: false
   roles:
-    - install-rook
+    - install-k4k8s
