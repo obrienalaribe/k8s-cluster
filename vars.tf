@@ -45,6 +45,11 @@ variable "gke_max_node_count" {
   description = "Maximum number of nodes in the NodePool"
 }
 
+variable "gke_cluster_master_cidr_block" {
+  type = string
+  description = "The IP range in CIDR notation to use for the hosted master network"
+}
+
 variable "enable_kong" {
   type = bool
   default = true

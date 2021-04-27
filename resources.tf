@@ -11,6 +11,11 @@ resource "google_container_cluster" "gke" {
     recurrence = "FREQ=WEEKLY;BYDAY=SA,SU"
     }
   }
+  private_cluster_config {
+    enable_private_nodes = true
+    enable_private_endpoint = false
+    master_ipv4_cidr_block = var.gke_cluster_master_cidr_block
+  }
 }
 
 # Create the new managed default node pool with autoscaling
