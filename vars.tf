@@ -30,6 +30,21 @@ variable "gke_node_pool_machine_type" {
   description = "Instance type used upon node pool creation"
 }
 
+variable "gke_initial_node_count" {
+  type = number
+  description = "The initial number of nodes for the pool."
+}
+
+variable "gke_min_node_count" {
+  type = number
+  description = "Minimum number of nodes in the NodePool"
+}
+
+variable "gke_max_node_count" {
+  type = number
+  description = "Maximum number of nodes in the NodePool"
+}
+
 variable "enable_kong" {
   type = bool
   default = true
