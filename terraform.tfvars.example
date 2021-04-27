@@ -7,6 +7,10 @@ zone = "us-east1-b"
 gke_cluster_name = "cea-k8s"
 gke_node_pool_name = "cea-k8s-node-pool"
 gke_node_pool_machine_type = "n2-standard-2"
+gke_cluster_master_cidr_block = "172.16.0.32/28"
+
+enable_kong = false
+enable_rook = false
 
 # Hashicorp Vars
 hashicorp_release_name = "cea"
