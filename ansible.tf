@@ -2,8 +2,7 @@
 resource "null_resource" "install_ansible" {
   count = var.enable_kong || var.enable_rook ? 1 : 0
   provisioner "local-exec" {
-    #command = "python3 -m pip install -U pip && python3 -m pip install --user ansible==2.9.14 openshift==0.11.2"
-    command = "echo install_ansible"
+    command = "python3 -m pip install -U pip && python3 -m pip install --user ansible==2.9.14 openshift==0.11.2"
   }
   triggers = {
     build_number = timestamp()
