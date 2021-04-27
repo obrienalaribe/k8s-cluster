@@ -5,7 +5,7 @@ CEA Google Kubernetes Engine Clusters
 
 This repository creates the following resources on Google Cloud Platform:
 - One node pool with autoscaling
-- One Kubernetes Cluster using the created node pool
+- One Provate Kubernetes Cluster with Public Endpoint using the created node pool
 
 The resources are planned and provisioned (applied) using [Terraform Cloud](https://app.terraform.io/app/MasterVentures).
 

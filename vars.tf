@@ -30,6 +30,11 @@ variable "gke_node_pool_machine_type" {
   description = "Instance type used upon node pool creation"
 }
 
+variable "gke_cluster_master_cidr_block" {
+  type = string
+  description = "The IP range in CIDR notation to use for the hosted master network"
+}
+
 variable "enable_kong" {
   type = bool
   default = true
