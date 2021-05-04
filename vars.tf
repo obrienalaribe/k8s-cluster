@@ -50,6 +50,31 @@ variable "gke_cluster_master_cidr_block" {
   description = "The IP range in CIDR notation to use for the hosted master network"
 }
 
+variable "gke_cluster_autoscaling_max_cpu_cores" {
+  type        = number
+  default     = 4
+  description = "Maximum amount of CPU resource in the cluster."
+}
+
+variable "gke_cluster_autoscaling_max_memory_gb" {
+  type        = number
+  default     = 16
+  description = "Maximum amount of Memory resource in the cluster."
+}
+
+variable "gke_cluster_autoscaling_min_cpu_cores" {
+  type        = number
+  default     = 1
+  description = "Minimum amount of CPU resource in the cluster."
+}
+
+variable "gke_cluster_autoscaling_min_memory_gb" {
+  type        = number
+  default     = 1
+  description = "Minimum amount of Memory resource in the cluster."
+}
+
+
 variable "enable_kong" {
   type = bool
   default = true

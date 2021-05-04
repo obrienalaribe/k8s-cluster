@@ -22,6 +22,19 @@ resource "google_container_cluster" "gke" {
   vertical_pod_autoscaling {
     enabled = true
   }
+  cluster_autoscaling {
+    enabled = true
+    resource_limits {
+      resource_type = "cpu"
+      maximum = var.gke_cluster_autoscaling_max_cpu_cores
+      minimum = var.gke_cluster_autoscaling_min_cpu_cores
+    }
+    resource_limits {
+      resource_type = "memory"
+      maximum = var.gke_cluster_autoscaling_max_memory_gb
+      minimum = var.gke_cluster_autoscaling_min_memory_gb
+    }
+  }
 }
 
 # Create the new managed default node pool with autoscaling
