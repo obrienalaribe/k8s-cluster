@@ -18,6 +18,7 @@ resource "google_container_cluster" "gke" {
     enable_private_endpoint = false
     master_ipv4_cidr_block = var.gke_cluster_master_cidr_block
   }
+  enable_shielded_nodes = true
 }
 
 # Create the new managed default node pool with autoscaling
