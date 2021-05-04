@@ -1,7 +1,7 @@
 # Provider Vars
 project = "vivid-plateau-278712"
 region = "us-east1"
-zone = "us-east1-b"
+zones = ["us-east1-b","us-east1-c"]
 
 # GKE Vars
 gke_cluster_name = "cea-k8s"
