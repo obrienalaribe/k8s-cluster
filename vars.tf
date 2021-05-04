@@ -9,9 +9,9 @@ variable "region" {
   description = "GCP Region"
 }
 
-variable "zone" {
-  type = string
-  description = "GCP Zone"
+variable "zones" {
+  type = list(string)
+  description = "GCP Zones"
 }
 
 # GKE Vars
