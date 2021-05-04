@@ -1,6 +1,8 @@
 # Create the GKE cluster removing the default node pool created by GKE upon cluster creation
 resource "google_container_cluster" "gke" {
   name     = var.gke_cluster_name
+  location = var.region
+  node_locations = var.zones
   remove_default_node_pool = true
   initial_node_count       = 1
   ip_allocation_policy {} # Define block for VPC-Native Cluster
@@ -21,6 +23,7 @@ resource "google_container_cluster" "gke" {
 # Create the new managed default node pool with autoscaling
 resource "google_container_node_pool" "default_node_pool" {
   name       = var.gke_node_pool_name
+  location = var.region
   cluster    = google_container_cluster.gke.name
   # Define initial number of nodes for the pool with a lifecycle block to ignore subsequent changes to this field
   initial_node_count = var.gke_initial_node_count
