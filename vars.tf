@@ -96,6 +96,7 @@ variable "enable_vault_consul" {
 
 variable "hashicorp_release_name" {
   type        = string
+  default     = "hashicorp"
   description = "Helm Release name for Vault and Consul charts"
 }
 
