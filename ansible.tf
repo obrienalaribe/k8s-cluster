@@ -19,7 +19,7 @@ resource "null_resource" "run_kong_ansible_playbook" {
   triggers = {
     build_number = timestamp()
   }
-  depends_on = [null_resource.install_ansible,local_file.kubeconfig]
+  depends_on = [null_resource.install_ansible, local_file.kubeconfig]
 }
 
 resource "null_resource" "run_rook_ansible_playbook" {
@@ -30,5 +30,5 @@ resource "null_resource" "run_rook_ansible_playbook" {
   triggers = {
     build_number = timestamp()
   }
-  depends_on = [null_resource.install_ansible,local_file.kubeconfig]
+  depends_on = [null_resource.install_ansible, local_file.kubeconfig]
 }
