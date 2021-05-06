@@ -1,5 +1,5 @@
 resource "helm_release" "consul" {
-  count = var.enable_vault_consul ? 1 : 0
+  count      = var.enable_vault_consul ? 1 : 0
   depends_on = [kubernetes_namespace.hashicorp]
   name       = "${var.hashicorp_release_name}-consul"
   chart      = "${path.module}/consul-helm"
@@ -22,13 +22,13 @@ resource "helm_release" "consul" {
 }
 
 resource "helm_release" "vault" {
-  count = var.enable_vault_consul ? 1 : 0
+  count     = var.enable_vault_consul ? 1 : 0
   name      = "${var.hashicorp_release_name}-vault"
   chart     = "${path.module}/vault-helm"
-  namespace  = var.hashicorp_k8s_namespace
+  namespace = var.hashicorp_k8s_namespace
 
   set {
-    name = "server.ha.enabled"
+    name  = "server.ha.enabled"
     value = "true"
   }
 
@@ -36,6 +36,15 @@ resource "helm_release" "vault" {
     name  = "server.ha.replicas"
     value = var.vault_replicas
   }
-  
+
   depends_on = [helm_release.consul]
+}
+
+resource "helm_release" "nginx_ingress" {
+  count      = var.enable_nginx_ingress_controller ? 1 : 0
+  depends_on = [kubernetes_namespace.nginx]
+  name       = "ingress-nginx"
+  repository = "https://kubernetes.github.io/ingress-nginx"
+  chart      = "ingress-nginx"
+  namespace  = kubernetes_namespace.nginx.0.id
 }

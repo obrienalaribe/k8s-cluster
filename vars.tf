@@ -77,20 +77,26 @@ variable "gke_cluster_autoscaling_min_memory_gb" {
 
 variable "enable_kong" {
   type        = bool
-  default     = true
+  default     = false
   description = "Whether or not to deploy Kong"
 }
 
 variable "enable_rook" {
   type        = bool
-  default     = true
+  default     = false
   description = "Whether or not to deploy Rook"
+}
+
+variable "enable_nginx_ingress_controller" {
+  type        = bool
+  default     = false
+  description = "Whether or not to deploy NGINX Ingress Controller"
 }
 
 # Hashicorp Vars
 variable "enable_vault_consul" {
   type        = bool
-  default     = true
+  default     = false
   description = "Whether or not to deploy Vault and Consul"
 }
 
